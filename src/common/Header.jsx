@@ -28,7 +28,7 @@ export default function Header() {
                     <ul className="sm:flex hidden  items-center space-x-4">
                         {/* <li className="text-black hover:border-b-2 border-white px-3 py-2 rounded-md text-md font-medium">My story </li> */}
                         <li className="text-white border-b-2 border-transparent hover:border-white px-3 py-2 text-md font-medium transition-all duration-300">
-                            <Link to={'about'}>About GYM</Link>
+                            <Link to={'/about'}>About GYM</Link>
                         </li>
                         <li className="text-white hover:border-white  border-b-2 border-transparent  px-3 py-2 text-md font-medium transition-all duration-300">
                              <Link to={'/program-pages'}>Programs</Link>
@@ -103,16 +103,16 @@ export default function Header() {
                 {/* Menu */}
                 <ul className="flex flex-col gap-2 mt-10 ">
                     <li onClick={showNav} className="mr-1 bg-[#3D3361] text-white border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
-                         About GYM
+                        <Link to={'/about'}>About GYM</Link>
                     </li>
                     <li onClick={showNav} className="mr-1 bg-[#3D3361] text-white border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
-                        <a href="#program">  Programs</a>
+                        <Link to={'/program-pages'}>Programs</Link>
                     </li>
                     <li onClick={showNav} className="mr-1 bg-[#3D3361] text-white border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
-                        Nutrition
+                       <Link to={'/nutrition'}> Nutrition</Link> 
                     </li>
                     <li onClick={showNav} className="mr-1 bg-[#3D3361] text-white border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
-                        Contact
+                       <Link to={'/contact-now'}>Contact</Link>
                     </li>
                     <li onClick={showNav} className="mr-1 bg-[#3D3361] text-[red] font-bold border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
                         Login Now

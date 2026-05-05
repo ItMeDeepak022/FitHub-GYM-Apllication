@@ -40,12 +40,12 @@ export default function ContactNow() {
 
             <div className="w-full  py-12 px-4 sm:px-10 md:px-20">
 
-                <div className="max-w-[1120px] mx-auto grid grid-cols-[40%_60%] md:grid-cols-2 gap-10">
+                <div className="max-w-[1120px] mx-auto grid sm:grid-cols-[40%_60%] grid-cols-1 gap-10">
 
                     {/* CONTACT FORM */}
 
 
-                    <div className="w-[500px] bg-white/10 backdrop-blur-md rounded-[10px] p-6 sm:p-8 border border-gray-200">
+                    <div className="max-w-[500px] bg-white/10 backdrop-blur-md rounded-[10px] p-6 sm:p-8 border border-gray-200">
 
                         {/* Heading */}
                         <h2 className="text-3xl font-bold mb-2 text-gray-800">
@@ -108,7 +108,7 @@ export default function ContactNow() {
                     </div>
 
                     {/* FAQ SECTION */}
-                    <div className="w-full max-w-2xl mx-auto py-10 px-4">
+                    <div className="max-w-full max-w-2xl mx-auto py-10 px-4">
 
                         <h2 className="text-3xl font-bold text-center mb-8">
                             Frequently Asked Questions
