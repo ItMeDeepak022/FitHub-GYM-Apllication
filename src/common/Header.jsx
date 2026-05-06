@@ -3,13 +3,20 @@ import { FaInstagram, FaFacebookF, FaTwitter, FaYoutube } from "react-icons/fa";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { MdCancel } from "react-icons/md";
 import { Link } from 'react-router';
+import { LuLogIn } from "react-icons/lu";
+import { AiOutlineLogout } from "react-icons/ai";
+
 export default function Header() {
     let [showHideMenu, setShowHideMenu] = useState(false)
     let showNav = () => {
         setShowHideMenu(!showHideMenu)
     }
 
-    
+    let [token, settoken] = useState(true)
+
+    let logOut = () => {
+        settoken(!token)
+    }
 
     return (
         <nav className="fixed top-0 bg-[#271C4F] left-0 right-0 z-10">
@@ -31,10 +38,10 @@ export default function Header() {
                             <Link to={'/about'}>About GYM</Link>
                         </li>
                         <li className="text-white hover:border-white  border-b-2 border-transparent  px-3 py-2 text-md font-medium transition-all duration-300">
-                             <Link to={'/program-pages'}>Programs</Link>
-                         </li>
+                            <Link to={'/program-pages'}>Programs</Link>
+                        </li>
                         <li className="text-white hover:border-white  border-b-2 border-transparent  px-3 py-2 text-md font-medium transition-all duration-300">
-                         <Link to={'/nutrition'}> Nutrition</Link> </li>  
+                            <Link to={'/nutrition'}> Nutrition</Link> </li>
 
                         <li className="text-white hover:border-white  border-b-2 border-transparent  px-3 py-2 text-md font-medium transition-all duration-300"> <Link to={'/contact-now'}>Contact</Link>  </li>
                     </ul>
@@ -60,6 +67,19 @@ export default function Header() {
                         <div className="w-10 h-10 flex items-center justify-center rounded-full bg-black cursor-pointer group hover:bg-white transition-all duration-300">
                             <FaYoutube className="text-red-600 text-2xl group-hover:text-[red] transition-all duration-300" />
                         </div>
+
+                    </div>
+
+                    <div className='sm:flex gap-5 hidden'>
+                        {
+                            token ?
+                               <Link to={'/login-page'}> <LuLogIn onClick={logOut} className='cursor-pointer text-[red] text-2xl' /></Link>
+
+                                :
+                                <AiOutlineLogout onClick={logOut} className=' cursor-pointer hover:text-[cyan] text-white text-2xl' />
+
+                        }
+
 
                     </div>
                 </div>
@@ -109,13 +129,13 @@ export default function Header() {
                         <Link to={'/program-pages'}>Programs</Link>
                     </li>
                     <li onClick={showNav} className="mr-1 bg-[#3D3361] text-white border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
-                       <Link to={'/nutrition'}> Nutrition</Link> 
+                        <Link to={'/nutrition'}> Nutrition</Link>
                     </li>
                     <li onClick={showNav} className="mr-1 bg-[#3D3361] text-white border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
-                       <Link to={'/contact-now'}>Contact</Link>
+                        <Link to={'/contact-now'}>Contact</Link>
                     </li>
                     <li onClick={showNav} className="mr-1 bg-[#3D3361] text-[red] font-bold border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
-                        Login Now
+                        <Link to={'/login-page'}>Login Now</Link>
                     </li>
                 </ul>
 

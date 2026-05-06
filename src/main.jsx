@@ -11,6 +11,7 @@ import RecipeDetailsPages from './common/recipe-details/RecipeDetailsPages'
 import ContactNow from './common/contact-section/ContactNow'
 import ScrollToTop from './pages/ScrollTop'
 import JoinCourse from './pages/JoinCourse'
+import LogOut from './common/login-logout/LogOut'
 
 
 createRoot(document.getElementById('root')).render(
@@ -18,14 +19,16 @@ createRoot(document.getElementById('root')).render(
     <ScrollToTop />
     <Routes>
 
+
       <Route element={<Layout />}>
+        <Route path='/login-page' element={<LogOut />} />
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<AboutGYM />} />
         <Route path='/program-pages' element={<ProgramsPages />} />
         <Route path='/nutrition' element={<Nutrition />} />
         <Route path='/recipe/:id' element={<RecipeDetailsPages />} />
         <Route path='/contact-now' element={<ContactNow />} />
-        <Route path='/join-us' element={<JoinCourse/>} />
+        <Route path='/join-us' element={<JoinCourse />} />
 
       </Route>
 

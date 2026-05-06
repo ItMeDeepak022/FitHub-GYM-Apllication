@@ -45,7 +45,7 @@ export default function AboutGYM() {
   return (
     <>
 
-      <div className="w-full h-70 bg-[#332467] mt-15 flex flex-col gap-5 justify-center items-center">
+      <div className="w-full h-70 bg-[#332467] mt-6 flex flex-col gap-5 justify-center items-center">
         <h1 className="text-[60px] text-white font-bold">About GYM</h1>
 
         <div className="flex items-center gap-5 ">
@@ -122,7 +122,7 @@ export default function AboutGYM() {
 
           {/* Button */}
           <button className="w-fit mt-4 sm:mb-0 mb-8 bg-[#E268E0] hover:bg-[#62D0DF] text-black px-6 py-3 rounded-lg font-semibold uppercase tracking-wide transition-all duration-300 hover:scale-105">
-            Join Now
+           <Link to={'/program-pages'}> Join Now</Link>
           </button>
 
         </div>
