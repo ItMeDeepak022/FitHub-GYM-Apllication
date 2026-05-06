@@ -28,7 +28,7 @@ export default function LogOut() {
                     {
                         show ?
                         // Login pages Desgin 
-                            <div className="w-full ">
+                            <div className="w-full leading-8 ">
                                 <div className="mb-8">
                                     <h2 className="text-3xl font-semibold text-gray-900">Login</h2>
                                     <p className="mt-2 text-sm text-gray-500">
@@ -159,7 +159,7 @@ export default function LogOut() {
                                 </form>
 
                                 {/* Footer */}
-                                <div className="sm:mt-3 sm:mb-5 mb-1 text-center text-sm text-gray-500">
+                                <div className="sm:mt-3 sm:mb-5 mt-5 mb-1 text-center text-sm text-gray-500">
                                     <p onClick={letshowForm} className="cursor-pointer">
                                         Already have an account?{" "}
                                         <span className="text-indigo-600 font-medium">Login now</span>
