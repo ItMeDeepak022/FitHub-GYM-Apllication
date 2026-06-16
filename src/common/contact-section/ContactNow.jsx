@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaGreaterThan, FaPhone } from 'react-icons/fa'
 import { Link } from 'react-router'
 import { FaUser, FaEnvelope, FaDumbbell, FaPaperPlane } from "react-icons/fa";
@@ -9,21 +9,7 @@ export default function ContactNow() {
     const apiUrl = import.meta.env.VITE_AdminUrl;
     const [active, setActive] = useState(null);
 
-    const faqs = [
-        {
-            question: "What are the gym hours?",
-            answer: "Our gym is open from 6 AM to 10 PM daily.",
-        },
-        {
-            question: "Do you offer personal training?",
-            answer: "Yes, we have certified personal trainers available.",
-        },
-        {
-            question: "What programs do you have?",
-            answer:
-                "We offer weight loss, muscle gain, and general fitness programs.",
-        },
-    ];
+   
 
     const toggle = (index) => {
         setActive(active === index ? null : index);
@@ -49,6 +35,23 @@ export default function ContactNow() {
                 }
             })
     }
+
+    const apiWebUrl = import.meta.env.VITE_WebAPI;
+
+
+    let [faqs, setfaq] = useState([])
+    let getfaqdata = () => {
+        axios.get(
+            `${apiWebUrl}/fetch-faq`).then((res) => res.data)
+            .then((finalRes) => {
+                console.log(finalRes);
+                setfaq(finalRes.data)
+            })
+    }
+
+    useEffect(() => {
+        getfaqdata()
+    }, [])
 
     return (
         <>

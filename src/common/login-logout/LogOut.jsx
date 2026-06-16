@@ -11,8 +11,8 @@ export default function LogOut() {
     }
     let navigate = useNavigate()
 
-    let url = import.meta.env.VITE_Weburl
-    let userUrl = import.meta.env.VITE_UserUrl
+
+    let apiUrl = import.meta.env.VITE_UserUrl
 
 
     const handleSubmit = (e) => {
@@ -23,7 +23,7 @@ export default function LogOut() {
                 email: e.target.email.value,
                 password: e.target.password.value,
             };
-            axios.post(`${userUrl}/user-login`, obj)
+            axios.post(`${apiUrlUrl}/user-login`, obj)
                 .then((res) => res.data)
                 .then((finalRes) => {
                     // console.log(finalRes);
@@ -52,7 +52,7 @@ export default function LogOut() {
                 gender: e.target.gender.value,
                 password: e.target.password.value,
             };
-            axios.post(`${url}/user-register`, obj)
+            axios.post(`${apiUrl}/user-register`, obj)
                 .then((res) => res.data)
                 .then((finalRes) => {
                     if (finalRes.status) {

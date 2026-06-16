@@ -31,23 +31,7 @@ export default function Program() {
     
 
 
-
-    let [test, settest] = useState([])
-    let getTestimonial = () => {
-        axios.get(
-            `${apiUrl}/get-testimonial`
-        ).then((res) => res.data)
-            .then((finalRes) => {
-                // console.log(finalRes);
-                settest(finalRes.data)
-            })
-    }
-
-
-
-
-
-    useEffect(() => {
+ useEffect(() => {
         getprogramdata()
     }, [])
 

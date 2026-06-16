@@ -13,7 +13,7 @@ export default function ProgramsPages() {
         axios.get(
             `${apiUrl}/fetch-program`).then((res) => res.data)
             .then((finalRes) => {
-                console.log(finalRes);
+                // console.log(finalRes);
                 setprogram(finalRes.data)
             })
     }

@@ -18,7 +18,6 @@ export default function Layout() {
         axios.get(
             `${apiUrl}/fetch-program`).then((res) => res.data)
             .then((finalRes) => {
-                
                 setprogram(finalRes.data)
             })
     }
@@ -34,14 +33,14 @@ export default function Layout() {
                     strings: ['loading...'],
                     autoStart: true,
                     loop: true,
-                    delay:50,
-                    deleteSpeed:50,
+                    delay: 50,
+                    deleteSpeed: 50,
                 }}
             />
         );
     }
 
-    if (program.length===0) {
+    if (program.length === 0) {
         return (
             <div className='max-w-full min-h-screen text-white font-bold text-4xl bg-black flex items-center justify-center'>
                 <TypeWriterText />
