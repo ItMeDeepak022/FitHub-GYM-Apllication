@@ -2,24 +2,26 @@ import React, { useState } from 'react'
 import { FaInstagram, FaFacebookF, FaTwitter, FaYoutube } from "react-icons/fa";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { MdCancel } from "react-icons/md";
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { LuLogIn } from "react-icons/lu";
 import { AiOutlineLogout } from "react-icons/ai";
-
+import { HiUsers } from "react-icons/hi2";
 export default function Header() {
     let [showHideMenu, setShowHideMenu] = useState(false)
     let showNav = () => {
         setShowHideMenu(!showHideMenu)
     }
 
-    let [token, settoken] = useState(true)
-
+    const token = localStorage.getItem("token");
+    let navigate = useNavigate()
     let logOut = () => {
-        settoken(!token)
+        localStorage.removeItem('token');
+        localStorage.removeItem("userName");
+        navigate('/login-page')
     }
 
     return (
-        <nav className="fixed top-0 bg-[#271C4F] left-0 right-0 z-10">
+        <nav className="fixed top-0 bg-[#271C4F] left-0 right-0 z-40">
 
             <div className="mx-auto bg-white/10  backdrop-blur-md ">
 
@@ -73,10 +75,15 @@ export default function Header() {
                     <div className='sm:flex gap-5 hidden'>
                         {
                             token ?
-                               <Link to={'/login-page'}> <LuLogIn onClick={logOut} className='cursor-pointer text-[red] text-2xl' /></Link>
+                                <LuLogIn onClick={logOut} className='cursor-pointer text-[red] text-2xl' />
+
+
 
                                 :
-                                <AiOutlineLogout onClick={logOut} className=' cursor-pointer hover:text-[cyan] text-white text-2xl' />
+                                <Link to={'/login-page'}>
+
+                                    <HiUsers className=' cursor-pointer hover:text-[cyan] text-white  text-[25px]' />
+                                </Link>
 
                         }
 
@@ -104,7 +111,7 @@ export default function Header() {
 
             {/* Mobile Slider Bar */}
 
-            <div className={`sm:hidden fixed top-0 left-0 w-full h-screen bg-[#271C4F] z-50
+            <div className={`sm:hidden fixed top-0 left-0 w-full h-screen bg-[#271C4F] z-57
              transform transition-transform duration-500 ease-in-out
                ${showHideMenu ? "translate-x-0" : "translate-x-full"}`}
             >

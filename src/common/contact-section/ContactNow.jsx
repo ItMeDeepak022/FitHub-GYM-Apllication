@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
-import { FaGreaterThan } from 'react-icons/fa'
+import { FaGreaterThan, FaPhone } from 'react-icons/fa'
 import { Link } from 'react-router'
 import { FaUser, FaEnvelope, FaDumbbell, FaPaperPlane } from "react-icons/fa";
+import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
 
 export default function ContactNow() {
+    const apiUrl = import.meta.env.VITE_AdminUrl;
     const [active, setActive] = useState(null);
 
     const faqs = [
@@ -26,15 +29,37 @@ export default function ContactNow() {
         setActive(active === index ? null : index);
     };
 
+    let submitData = (e) => {
+        e.preventDefault()
+        let obj = {
+            name: e.target.name.value,
+            email: e.target.email.value,
+            program: e.target.program.value,
+            message: e.target.message.value,
+            phone: e.target.phone.value,
+        }
+
+        axios.post(
+            `${apiUrl}/add-query`, obj
+        ).then((res) => res.data)
+            .then((finalRes) => {
+                if (finalRes.status) {
+                    e.target.reset();
+                    toast.success(finalRes.message);
+                }
+            })
+    }
+
     return (
         <>
-            <div className="w-full h-50 bg-[#332467] mt-5 flex flex-col gap-5 justify-center items-center mt-15">
-                <h1 className="text-[50px] text-white font-bold">Contact Now</h1>
+            <ToastContainer />
+            <div className="w-full h-50 bg-[#332467] mt-5 flex flex-col sm:gap-5 gap-3 justify-center items-center sm:mt-15 mt-10">
+                <h1 className="sm:text-[50px] text-[40px] text-white font-bold">Contact Now</h1>
 
                 <div className="flex items-center gap-5 ">
-                    <p className="text-[20px] text-[#E268E0] font-bold"><Link to={'/'}>Home</Link>  </p>
-                    <FaGreaterThan className="text-[20px] text-[cyan] mt-1" />
-                    <p className="text-[20px] text-white font-bold">Contact Now</p>
+                    <p className="text-[17px] text-[#E268E0] font-bold"><Link to={'/'}>Home</Link>  </p>
+                    <FaGreaterThan className="text-[17px] text-[cyan] mt-1" />
+                    <p className="text-[17px] text-white font-bold">Contact Now</p>
                 </div>
             </div>
 
@@ -55,13 +80,15 @@ export default function ContactNow() {
                             Let’s build your fitness journey together
                         </p>
 
-                        <form className="space-y-5">
+                        <form className="space-y-5" onSubmit={submitData}>
 
                             {/* NAME */}
                             <div className="relative">
                                 <FaUser className="absolute top-4 left-3 text-gray-400" />
                                 <input
                                     type="text"
+                                    name='name'
+                                    required
                                     placeholder="Your Name"
                                     className="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E268E0] focus:border-transparent transition"
                                 />
@@ -72,7 +99,21 @@ export default function ContactNow() {
                                 <FaEnvelope className="absolute top-4 left-3 text-gray-400" />
                                 <input
                                     type="email"
+                                    name='email'
+                                    required
                                     placeholder="Your Email"
+                                    className="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E268E0] focus:border-transparent transition"
+                                />
+                            </div>
+
+                            <div className="relative">
+                                <FaPhone className="absolute top-4 left-3 text-gray-400" />
+                                <input
+                                    type="phone"
+                                    name='phone'
+                                    maxLength={10}
+                                    required
+                                    placeholder="Mobile Number"
                                     className="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E268E0] focus:border-transparent transition"
                                 />
                             </div>
@@ -80,11 +121,14 @@ export default function ContactNow() {
                             {/* PROGRAM */}
                             <div className="relative">
                                 <FaDumbbell className="absolute top-4 left-3 text-gray-400" />
-                                <select className="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E268E0] focus:border-transparent transition">
-                                    <option>Select Program</option>
-                                    <option>Weight Loss</option>
-                                    <option>Muscle Gain</option>
-                                    <option>General Fitness</option>
+                                <select
+                                    name='program'
+                                    required
+                                    className="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E268E0] focus:border-transparent transition">
+                                    <option value={''}>Select Program</option>
+                                    <option value={'weight-loss'}>Weight Loss</option>
+                                    <option value={'muscle-gain'}>Muscle Gain</option>
+                                    <option value={'fit-body'}>General Fitness</option>
                                 </select>
                             </div>
 
@@ -92,6 +136,8 @@ export default function ContactNow() {
                             <textarea
                                 placeholder="Write your message..."
                                 rows="4"
+                                name='message'
+                                required
                                 className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E268E0] focus:border-transparent transition"
                             ></textarea>
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 export default function RecipesPage() {
   return (
@@ -21,12 +22,12 @@ export default function RecipesPage() {
 
           {/* Heading */}
           <div>
-            <h2 className="text-purple-600 tracking-widest text-sm font-medium">
-              / RECIPES /
+            <h2 className="text-purple-600 tracking-widest text-sm font-medium uppercase">
+              / Nutrition /
             </h2>
 
             <h1 className="text-2xl sm:text-4xl font-bold mt-2">
-              Healthy Recipes
+              Healthy Nutrition
             </h1>
 
             <p className="text-gray-600 mt-4 leading-relaxed text-sm sm:text-base">
@@ -42,7 +43,7 @@ export default function RecipesPage() {
 
             <div className="w-16 h-16 rounded-full overflow-hidden">
               <img
-                src="/Img/recipe1.jpg"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk9nNnSZQQkjUOwThZLMO-YwX6h6DjyLANxfZz1W7Mhw&s=10"
                 alt="falafel"
                 className="w-full h-full object-cover"
               />
@@ -62,35 +63,12 @@ export default function RecipesPage() {
 
           </div>
 
-          {/* Recipe 2 */}
-          <div className="flex items-center gap-4 border-t pt-4">
-
-            <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
-              <img
-                src="/Img/recipe2.jpg"
-                alt="pancakes"
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            <div>
-              <p className="text-xs text-gray-400 uppercase">
-                Illustration
-              </p>
-              <h2 className="text-lg font-semibold">
-                STRAWBERRY PANCAKES
-              </h2>
-              <p className="text-gray-500 text-sm">
-                Time: 30 min | 398 calories
-              </p>
-            </div>
-
-          </div>
+          
 
           {/* BUTTON */}
           <div className="mt-4">
             <button className="px-6 py-3 bg-[#E268E0] text-white rounded-lg font-semibold hover:bg-[#62D0DF] transition-all duration-300">
-              More Recipes →
+             <Link to={'/nutrition'}> More Recipes →</Link>
             </button>
           </div>
 

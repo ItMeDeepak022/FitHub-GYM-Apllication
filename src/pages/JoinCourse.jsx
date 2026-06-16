@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router'
+import { toast, ToastContainer } from 'react-toastify'
 
 export default function JoinCourse() {
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
         phone: '',
-        course: '',
-        startDate: '',
-        price: '',
-        duration: '',
+
+
     })
 
     const handleChange = (event) => {
@@ -16,24 +16,36 @@ export default function JoinCourse() {
         setFormData((prev) => ({ ...prev, [name]: value }))
     }
 
+    let navigate = useNavigate()
+    let token = localStorage.getItem('token')
     const handleSubmit = (event) => {
         event.preventDefault()
-        console.log('Join course request:', formData)
-        alert('Your request has been submitted!')
-        setFormData({
-            fullName: '',
-            email: '',
-            phone: '',
-            course: '',
-            startDate: '',
-            price: '',
-            duration: '',
-        })
+
+        if (token) {
+            setFormData({
+                fullName: '',
+                email: '',
+                phone: '',
+
+            })
+            navigate('/payment-page', {
+                state: formData
+            });
+        }
+        else {
+            toast.warn("Login Now...");
+
+            setTimeout(() => {
+                navigate("/login-page");
+            }, 1500);
+        }
+
+
     }
 
     return (
         <main className="w-full bg-gray-100 mt-15">
-
+            <ToastContainer />
             <div className='max-w-full mx-auto'>
                 <section className="w-full mb-7 sm:text-center text-start p-5">
                     <h1 className="sm:text-6xl text-4xl font-bold mb-3 text-slate-800">Join the Gym Courses</h1>
@@ -66,9 +78,9 @@ export default function JoinCourse() {
 
                     </div>
 
-                    <div className="p-5 m-[0px_30px] bg-slate-50 rounded-2xl">
-                        <h2 className="mb-4 text-2xl text-slate-900">Candidate Details</h2>
-                        <form onSubmit={handleSubmit} className="grid gap-4">
+                    <div className="p-10 bg-slate-50 ">
+                        <h2 className="mb-4 ml-5 text-2xl text-slate-900">Candidate Details</h2>
+                        <form onSubmit={handleSubmit} className="grid gap-8 m-5">
                             <label className="grid gap-2 text-slate-700">
                                 Full Name
                                 <input
@@ -108,69 +120,13 @@ export default function JoinCourse() {
                                 />
                             </label>
 
-                            <label className="grid gap-2 text-slate-700">
-                                Course Goal
-                                <select
-                                    name="course"
-                                    value={formData.course}
-                                    onChange={handleChange}
-                                    className="p-3 rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-300"
-                                >
-                                    <option>Not Selected</option>
-                                    <option>Ideal Body</option>
-                                    <option>Weight Loss</option>
-                                    <option>Muscle Gain</option>
 
-                                </select>
-
-
-                            </label>
-
-                            <label className="grid gap-2 text-slate-700">
-                                Course Duration
-                                <select
-                                    name="duration"
-                                    value={formData.duration}
-                                    onChange={handleChange}
-                                    className="p-3 rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-300"
-                                ><option>Not Selected</option>
-                                    <option>6 Months</option>
-                                    <option>3 Months</option>
-                                    <option>5 Months</option>
-                                </select>
-                            </label>
-
-
-                            <label className="grid gap-2 text-slate-700">
-                                Course Price
-                                <select
-                                    name="price"
-                                    value={formData.price}
-                                    onChange={handleChange}
-                                    className="p-3 rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-300"
-                                >   <option>Not Selected</option>
-                                    <option>₹ 5999</option>
-                                    <option>₹ 2999</option>
-                                    <option>₹ 4999</option>
-                                </select>
-                            </label>
-
-                            <label className="grid gap-2 text-slate-700">
-                                Preferred Start Date
-                                <input
-                                    type="date"
-                                    name="startDate"
-                                    value={formData.startDate}
-                                    onChange={handleChange}
-                                    className="p-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-300"
-                                />
-                            </label>
 
                             <button
                                 type="submit"
-                                className="py-3 px-5 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
+                                className="py-3 px-5 rounded-xl bg-blue-600 text-white"
                             >
-                                Submit Request
+                                Proceed Now
                             </button>
                         </form>
 

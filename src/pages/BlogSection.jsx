@@ -1,6 +1,23 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 export default function BlogSection() {
+    const apiUrl = import.meta.env.VITE_WebAPI;
+
+    let [blog, setblog] = useState([])
+    let getblogs = () => {
+        axios.get(
+            `${apiUrl}/fetch-blog`
+        ).then((res) => res.data)
+            .then((finalRes) => {
+                // console.log(finalRes);
+                setblog(finalRes.data)
+            })
+    }
+
+    useEffect(() => {
+        getblogs()
+    }, [])
     return (
         <div className="w-full bg-white py-15 px-4 sm:px-10 md:px-20">
 
@@ -16,54 +33,66 @@ export default function BlogSection() {
             </div>
 
             {/* Main Layout */}
-            <div className="flex sm:flex-row  flex-col gap-5 items-center ">
 
+            <div className="max-w-7xl mx-auto space-y-12">
+                {blog.map((obj, index) => {
+                    const {
+                        blogImg,
+                        blogTitle,
+                        blogContent,
+                        authorName,
+                    } = obj;
 
+                    return (
+                        <div
+                            key={index}
+                            className="grid lg:grid-cols-2 bg-white  overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500"
+                        >
+                            {/* Image */}
+                            <div className="overflow-hidden">
+                                <img
+                                    src={blogImg}
+                                    alt={blogTitle}
+                                    className="w-full h-[350px] lg:h-[450px] object-cover hover:scale-110 transition duration-700"
+                                />
+                            </div>
 
-                <div className="sm:w-150 w-full rounded-[20px]">
-                    <img
-                        src="Img/sidePose.png"
-                        alt="Modern Gym"
-                        className="sm:w-full sm:h-[500px] h-[400px]sm:rounded-[20px] rounded-none"
-                    />
-                </div>
-                {/* RIGHT CONTENT */}
-                <div className="flex flex-col gap-5">
+                            {/* Content */}
+                            <div className="p-8 lg:p-12 border-1 border-gray-200 sm:m-15 flex flex-col justify-center">
+                                <span className="inline-block w-fit px-4 py-2 bg-[#E268E0]/10 text-[#E268E0] rounded-full text-sm font-semibold mb-4">
+                                    Fitness Blog
+                                </span>
 
-                    {/* Blog 1 */}
-                    <div className="shadow-sm p-5">
-                        <p className="text-sm text-gray-400 mb-2">Illustration</p>
-                        <h2 className="text-xl sm:text-2xl font-bold mb-3">
-                            Make fitness your lifestyle
-                        </h2>
-                        <p className="text-gray-600 leading-relaxed">
-                            Fitness is not just hard training every day, it has to be your way of life.
-                            Change your eating habits, believe in yourself, and strive for a better, healthier life!
-                        </p>
-                        <button className="mt-4 px-6 py-3 bg-[#E268E0] text-white rounded-lg font-semibold shadow-md hover:bg-[#62D0DF] transition-all duration-300">
-                            Read More →
-                        </button>
-                    </div>
+                                <h2 className="text-3xl font-bold text-gray-900 mb-5">
+                                    {blogTitle}
+                                </h2>
 
+                                <p className="text-gray-600 leading-8 mb-8">
+                                    {blogContent}
+                                </p>
 
+                                <div className="flex items-center justify-between flex-wrap gap-4">
+                                    <div>
+                                        <p className="text-sm text-gray-500">
+                                            Written By
+                                        </p>
+                                        <h4 className="font-semibold text-lg">
+                                            {authorName}
+                                        </h4>
+                                    </div>
 
-                    {/* Blog 2 */}
-                    <div className="shadow-sm p-5">
-                        <h2 className="text-xl sm:text-2xl font-bold mb-3">
-                            How food affects weight loss
-                        </h2>
-                        <p className="text-gray-600 leading-relaxed">
-                            To lose weight, you need to eat healthy food. However, few people understand
-                            how food really affects the speed and quality of weight loss.
-                        </p>
-                        <button className="mt-4 px-6 py-3 bg-[#E268E0] text-white rounded-lg font-semibold shadow-md hover:bg-[#62D0DF] transition-all duration-300">
-                            Read More →
-                        </button>
-                    </div>
-
-                </div>
-
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
+
+
+
         </div>
     );
 }
+
+

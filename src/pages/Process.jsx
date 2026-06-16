@@ -26,7 +26,7 @@ export default function Process() {
     ];
 
     return (
-        <section className="w-full py-16 px-6 bg-[#F3F2F8]">
+        <section className="w-full pb-10 px-6 bg-[#F3F2F8]">
 
             <div className="max-w-7xl mx-auto text-center">
 
