@@ -23,7 +23,7 @@ export default function LogOut() {
                 email: e.target.email.value,
                 password: e.target.password.value,
             };
-            axios.post(`${apiUrlUrl}/user-login`, obj)
+            axios.post(`${apiUrl}/user-login`, obj)
                 .then((res) => res.data)
                 .then((finalRes) => {
                     // console.log(finalRes);
