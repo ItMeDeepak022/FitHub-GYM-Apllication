@@ -142,7 +142,7 @@ export default function Header() {
                         <Link to={'/contact-now'}>Contact</Link>
                     </li>
                     <li onClick={showNav} className="mr-1 bg-[#3D3361] text-[red] font-bold border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
-                        <Link to={'/login-page'}>Login Now</Link>
+                        <Link to={'/login-page'}> { token ? 'Logout' :"Login"} </Link>
                     </li>
                 </ul>
 
