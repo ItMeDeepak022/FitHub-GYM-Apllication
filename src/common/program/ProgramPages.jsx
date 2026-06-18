@@ -7,7 +7,7 @@ import { Link } from "react-router";
 export default function ProgramsPages() {
     const apiUrl = import.meta.env.VITE_WebAPI;
 
-    
+
     let [program, setprogram] = useState([])
     let getprogramdata = () => {
         axios.get(
@@ -43,16 +43,16 @@ export default function ProgramsPages() {
                 <div className="flex flex-col gap-10 sm:p-5 p-2 ">
 
                     {program.map((data, index) => {
-                        let { programName, programImg, description, duration,price } = data
+                        let { programName, programImg, description, duration, price } = data
                         return (
                             <div
                                 key={index}
-                                className={`border-1 border-gray-200 grid grid-cols-1 sm:grid-cols-2 gap-16 items-center 
+                                className={`border-1 border-gray-200 grid grid-cols-1 sm:grid-cols-2 gap-5 
                                     }`}
                             >
 
                                 {/* LEFT IMAGE */}
-                                <div className="w-full h-[500px] ">
+                                <div className="w-full sm:h-[600px] h-[300px] ">
                                     <img
                                         src={programImg}
                                         alt={programName}
@@ -61,35 +61,29 @@ export default function ProgramsPages() {
                                 </div>
 
                                 {/* RIGHT TEXT */}
-                                <div className="flex flex-col gap-4 sm:p-0 p-5">
+                                <div className="flex flex-col sm:gap-5 gap-3 sm:p-5 p-2">
                                     <h2 className="text-3xl sm:text-5xl font-bold">
                                         {programName}
                                     </h2>
 
-                                    <div className="flex  gap-5">
-                                        <div className="text-[16px] text-black flex items-center gap-5">
+                                    <div className="w-full  text-[16px] text-black flex sm:justify-start sm:gap-5 gap-6 ">
 
-                                            <FaClock className="text-[#E268E0]" />{duration} Months
-                                            <CgGym className="text-[#E268E0]" /> Gym
-                                            <FaAppleAlt className="text-[#E268E0]" /> Nutrition
-                                        </div>
-
-
-
-
+                                        <div className="flex items-center gap-2  "><FaClock className="text-[#E268E0]" />{duration} Months</div>
+                                        <div className="flex items-center gap-2  "><CgGym className="text-[#E268E0]" /> Gym</div>
+                                        <div className="flex items-center gap-2  "><FaAppleAlt className="text-[#E268E0]" /> Nutrition</div>
                                     </div>
-                                    <p className="text-gray-600 leading-relaxed text-[20px]">
+                                    <p className="text-gray-600 leading-relaxed text-[20px] text-justify">
                                         {description}
                                     </p>
                                     <p className="text-gray-600 leading-relaxed text-[20px]">
-                                        {duration} Months
+                                      Duraitons — <span className="text-green-600">{duration} Months</span> 
                                     </p>
                                     <p className="text-gray-600 leading-relaxed text-[20px]">
-                                        ₹ {price}
+                                       Price —<span className="text-green-600"> ₹ {price}</span>
                                     </p>
 
-                                    <button className="mt-4 w-fit px-6 py-3 bg-[#E268E0] text-white rounded-lg font-semibold hover:bg-[#62D0DF] transition">
-                                        <Link to={'/join-us'} > Join Now →</Link>
+                                    <button className="sm:mb-0 mb-3 w-fit px-6 py-3 bg-[#E268E0] text-white rounded-lg font-semibold hover:bg-[#62D0DF] transition">
+                                        <Link to={'/join-us'} state={data}> Join Now →</Link>
                                     </button>
                                 </div>
 

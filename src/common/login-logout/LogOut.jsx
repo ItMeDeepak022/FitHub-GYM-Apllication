@@ -63,9 +63,7 @@ export default function LogOut() {
                     }
                     else
                         toast.error(finalRes.message)
-                    setTimeout(() => {
-                        letshowForm()
-                    }, 1000);
+                    
 
                 })
 

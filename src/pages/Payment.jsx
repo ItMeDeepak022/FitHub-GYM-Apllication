@@ -1,9 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useRazorpay } from "react-razorpay";
-
 import { useLocation, useNavigate } from "react-router";
 import { toast, ToastContainer } from "react-toastify";
+
+
+
 
 
 
@@ -104,7 +106,7 @@ export default function Payment() {
                             order_id: razorpay_Order.id,
 
                             handler: async function (response) {
-
+                                setshowloader(true)
                                 await axios.post(
                                     `${apiUrl}/verify-payment`, response,
                                     obj,
@@ -116,10 +118,14 @@ export default function Payment() {
                                 ).then((res) => res.data)
                                     .then((finalRes) => {
                                         if (finalRes.status) {
-                                            toast.info(finalRes.message)
+
+                                            toast.success("Payment Verified Successfully!");
+
                                             setTimeout(() => {
-                                                navigate('/user/subscription')
-                                            }, 1500);
+                                                setshowloader(false);
+                                                navigate('/user/subscription');
+                                            }, 2000);
+
                                         }
                                         else {
                                             toast.error(finalRes.message)
@@ -140,246 +146,273 @@ export default function Payment() {
                         razorpayInstance.open();
                     }
                 }
+                else {
+                    toast.error(finalRes.message)
+                    toast.error('Fraud Alert..')
+                    setTimeout(() => {
+                        localStorage.removeItem('token')
+                        navigate('/login-page')
+                    }, 800);
+                }
             })
 
     };
 
+    let [showloader, setshowloader] = useState(false)
+
+
 
 
     return (
-        <div className="min-h-screen bg-white sm:mt-12 mt-5 sm:pb-3 pb-0 py-5">
-            <div className="max-w-4xl mx-auto">
-                <div className="bg-gray-800 overflow-hidden">
-                    <ToastContainer />
-                    <div className="bg-gradient-to-r from-orange-500 to-red-600 px-6 py-8">
-                        <h1 className="text-3xl font-bold text-white">
-                            Gym Membership Payment
-                        </h1>
+        <>
+            {
+                showloader && (
+                    <div className="fixed inset-0 bg-black z-[9999] flex justify-center items-center">
+                        <div className="text-center">
+                            <div className="w-16 h-16 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto"></div>
+
+                            <h1 className="text-white text-3xl font-bold mt-5">
+                                Verifying Payment...
+                            </h1>
+                        </div>
                     </div>
+                )
+            }
 
-                    <form className="p-8" onSubmit={paymentNow}>
-
-                        {/* Personal Info */}
-                        <div className="mb-8">
-                            <h2 className="text-xl text-white mb-4">
-                                Personal Information
-                            </h2>
-
-                            <div className="grid md:grid-cols-2 gap-4">
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={name}
-                                    required
-                                    onChange={(e) => setname(e.target.value)}
-                                    placeholder="Full Name"
-                                    className="w-full px-4 py-2 bg-gray-700 text-white rounded"
-                                />
-
-                                <input
-                                    type="email"
-                                    name="email"
-                                    required
-                                    value={email}
-                                    onChange={(e) => setemail(e.target.value)}
-                                    placeholder="Email"
-                                    className="w-full px-4 py-2 bg-gray-700 text-white rounded"
-                                />
-
-                                <input
-                                    type="tel"
-                                    name="phone"
-                                    value={phone}
-                                    required
-                                    onChange={(e) => setphone(e.target.value)}
-                                    placeholder="Phone"
-                                    className="w-full px-4 py-2 bg-gray-700 text-white rounded"
-                                />
-                                <input
-                                    type="date"
-                                    name="startDate"
-                                    required
-                                    className="w-full px-4 py-2 bg-gray-700 text-white rounded"
-                                />
-                            </div>
+            <div className="min-h-screen bg-white sm:mt-12 mt-5 sm:pb-3 pb-0 py-5">
+                <div className="max-w-4xl mx-auto">
+                    <div className="bg-gray-800 overflow-hidden">
+                        <ToastContainer />
+                        <div className="bg-gradient-to-r from-orange-500 to-red-600 px-6 py-8">
+                            <h1 className="text-3xl font-bold text-white">
+                                Gym Membership Payment
+                            </h1>
                         </div>
 
-                        {/* Address */}
-                        <div className="mb-8">
-                            <textarea
-                                name="address"
-                                rows="3"
-                                placeholder="Address"
-                                className="w-full px-4 py-2 bg-gray-700 text-white rounded"
-                            />
+                        <form className="p-8" onSubmit={paymentNow}>
 
-                            <div className="grid md:grid-cols-3 gap-4 mt-4">
-                                <input
-                                    type="text"
-                                    name="city"
-                                    placeholder="City"
+                            {/* Personal Info */}
+                            <div className="mb-8">
+                                <h2 className="text-xl text-white mb-4">
+                                    Personal Information
+                                </h2>
+
+                                <div className="grid md:grid-cols-2 gap-4">
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        value={name}
+                                        required
+                                        onChange={(e) => setname(e.target.value)}
+                                        placeholder="Full Name"
+                                        className="w-full px-4 py-2 bg-gray-700 text-white rounded"
+                                    />
+
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        required
+                                        value={email}
+                                        onChange={(e) => setemail(e.target.value)}
+                                        placeholder="Email"
+                                        className="w-full px-4 py-2 bg-gray-700 text-white rounded"
+                                    />
+
+                                    <input
+                                        type="tel"
+                                        name="phone"
+                                        value={phone}
+                                        required
+                                        onChange={(e) => setphone(e.target.value)}
+                                        placeholder="Phone"
+                                        className="w-full px-4 py-2 bg-gray-700 text-white rounded"
+                                    />
+                                    <input
+                                        type="date"
+                                        name="startDate"
+                                        required
+                                        className="w-full px-4 py-2 bg-gray-700 text-white rounded"
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Address */}
+                            <div className="mb-8">
+                                <textarea
+                                    name="address"
+                                    rows="3"
+                                    placeholder="Address"
                                     className="w-full px-4 py-2 bg-gray-700 text-white rounded"
                                 />
 
-                                <input
-                                    type="text"
-                                    name="state"
-                                    placeholder="State"
-                                    className="w-full px-4 py-2 bg-gray-700 text-white rounded"
-                                />
+                                <div className="grid md:grid-cols-3 gap-4 mt-4">
+                                    <input
+                                        type="text"
+                                        name="city"
+                                        placeholder="City"
+                                        className="w-full px-4 py-2 bg-gray-700 text-white rounded"
+                                    />
 
-                                <input
-                                    type="text"
-                                    name="zip"
-                                    placeholder="Zip Code"
-                                    className="w-full px-4 py-2 bg-gray-700 text-white rounded"
-                                />
-                            </div>
-                        </div>
+                                    <input
+                                        type="text"
+                                        name="state"
+                                        placeholder="State"
+                                        className="w-full px-4 py-2 bg-gray-700 text-white rounded"
+                                    />
 
-                        {/* Membership Plans */}
-                        <div className="mb-8">
-                            <h2 className="text-xl text-white mb-4">
-                                Membership Plans
-                            </h2>
-
-                            <div className="grid md:grid-cols-3 gap-4">
-                                {program.map((plan, index) => {
-                                    let { programName, price, duration } = plan
-                                    return (
-                                        <label
-                                            key={index}
-                                            className={`cursor-pointer p-4 rounded border-2 ${membership === programName
-                                                ? "border-orange-500"
-                                                : "border-gray-600"
-                                                } bg-gray-700`}
-                                        >
-                                            <div className="flex gap-3 items-center mb-2">
-                                                <input
-                                                    type="radio"
-                                                    name="membership"
-                                                    checked={membership == programName}
-                                                    onChange={() => {
-                                                        setMembership(programName);
-                                                        setTotal(price);
-                                                        setduration(duration)
-                                                    }}
-                                                />
-
-                                                <h3 className="text-white">
-                                                    {programName}
-                                                </h3>
-                                            </div>
-
-                                            <p className="text-orange-400">
-                                                ₹{(price)} - {duration} Months
-                                            </p>
-                                        </label>
-                                    )
-                                })}
-                            </div>
-                        </div>
-
-                        {/* Payment Method */}
-                        <div className="mb-8">
-                            <h2 className="text-xl text-white mb-4">
-                                Payment Method
-                            </h2>
-
-                            <div className="grid md:grid-cols-2 gap-4">
-
-                                <label className="p-4 rounded border-2 border-gray-600 bg-gray-700 cursor-pointer">
-                                    <div className="flex gap-3 items-center">
-                                        <input
-                                            type="radio"
-                                            name="paymentMethod"
-                                            value="UPI"
-                                            checked={paymentMethod === "UPI"}
-                                            onChange={(e) =>
-                                                setPaymentMethod(e.target.value)
-                                            }
-                                        />
-
-                                        <h3 className="text-white">
-                                            UPI Payment
-                                        </h3>
-                                    </div>
-                                </label>
-
-                                <label className="p-4 rounded border-2 border-gray-600 bg-gray-700 cursor-pointer">
-                                    <div className="flex gap-3 items-center">
-                                        <input
-                                            type="radio"
-                                            name="paymentMethod"
-                                            value="cash"
-                                            checked={paymentMethod === "cash"}
-                                            onChange={(e) =>
-                                                setPaymentMethod(e.target.value)
-                                            }
-                                        />
-
-                                        <h3 className="text-white">
-                                            Cash Payment
-                                        </h3>
-                                    </div>
-                                </label>
-
-                            </div>
-                        </div>
-
-                        {/* Summary */}
-                        <div className="bg-gray-700 rounded p-3 mb-8">
-                            <div className="flex justify-between mb-3">
-                                <span className="text-gray-300">
-                                    Membership Plan
-                                </span>
-
-                                <span className="text-white">
-                                    {membership}
-                                </span>
+                                    <input
+                                        type="text"
+                                        name="zip"
+                                        placeholder="Zip Code"
+                                        className="w-full px-4 py-2 bg-gray-700 text-white rounded"
+                                    />
+                                </div>
                             </div>
 
-                            <div className="flex justify-between mb-3">
-                                <span className="text-gray-300">
-                                    Plan Duration
-                                </span>
+                            {/* Membership Plans */}
+                            <div className="mb-8">
+                                <h2 className="text-xl text-white mb-4">
+                                    Membership Plans
+                                </h2>
 
-                                <span className="text-white">
-                                    {duration} Months
-                                </span>
+                                <div className="grid md:grid-cols-3 gap-4">
+                                    {program.map((plan, index) => {
+                                        let { programName, price, duration } = plan
+                                        return (
+                                            <label
+                                                key={index}
+                                                className={`cursor-pointer p-4 rounded border-2 ${membership === programName
+                                                    ? "border-orange-500"
+                                                    : "border-gray-600"
+                                                    } bg-gray-700`}
+                                            >
+                                                <div className="flex gap-3 items-center mb-2">
+                                                    <input
+                                                        type="radio"
+                                                        name="membership"
+                                                        checked={membership == programName}
+                                                        onChange={() => {
+                                                            setMembership(programName);
+                                                            setTotal(price);
+                                                            setduration(duration)
+                                                        }}
+                                                    />
+
+                                                    <h3 className="text-white">
+                                                        {programName}
+                                                    </h3>
+                                                </div>
+
+                                                <p className="text-orange-400">
+                                                    ₹{(price)} - {duration} Months
+                                                </p>
+                                            </label>
+                                        )
+                                    })}
+                                </div>
                             </div>
 
-                            <div className="flex justify-between mb-3">
-                                <span className="text-gray-300">
+                            {/* Payment Method */}
+                            <div className="mb-8">
+                                <h2 className="text-xl text-white mb-4">
                                     Payment Method
-                                </span>
+                                </h2>
 
-                                <span className="text-white capitalize">
-                                    {paymentMethod}
-                                </span>
+                                <div className="grid md:grid-cols-2 gap-4">
+
+                                    <label className="p-4 rounded border-2 border-gray-600 bg-gray-700 cursor-pointer">
+                                        <div className="flex gap-3 items-center">
+                                            <input
+                                                type="radio"
+                                                name="paymentMethod"
+                                                value="UPI"
+                                                checked={paymentMethod === "UPI"}
+                                                onChange={(e) =>
+                                                    setPaymentMethod(e.target.value)
+                                                }
+                                            />
+
+                                            <h3 className="text-white">
+                                                UPI Payment
+                                            </h3>
+                                        </div>
+                                    </label>
+
+                                    <label className="p-4 rounded border-2 border-gray-600 bg-gray-700 cursor-pointer">
+                                        <div className="flex gap-3 items-center">
+                                            <input
+                                                type="radio"
+                                                name="paymentMethod"
+                                                value="cash"
+                                                checked={paymentMethod === "cash"}
+                                                onChange={(e) =>
+                                                    setPaymentMethod(e.target.value)
+                                                }
+                                            />
+
+                                            <h3 className="text-white">
+                                                Cash Payment
+                                            </h3>
+                                        </div>
+                                    </label>
+
+                                </div>
                             </div>
 
-                            <div className="flex justify-between border-t pt-4">
-                                <span className="text-white font-bold">
-                                    Total Amount
-                                </span>
+                            {/* Summary */}
+                            <div className="bg-gray-700 rounded p-3 mb-8">
+                                <div className="flex justify-between mb-3">
+                                    <span className="text-gray-300">
+                                        Membership Plan
+                                    </span>
 
-                                <span className="text-orange-400 text-xl font-bold">
-                                    ₹{total}
-                                </span>
+                                    <span className="text-white">
+                                        {membership}
+                                    </span>
+                                </div>
+
+                                <div className="flex justify-between mb-3">
+                                    <span className="text-gray-300">
+                                        Plan Duration
+                                    </span>
+
+                                    <span className="text-white">
+                                        {duration} Months
+                                    </span>
+                                </div>
+
+                                <div className="flex justify-between mb-3">
+                                    <span className="text-gray-300">
+                                        Payment Method
+                                    </span>
+
+                                    <span className="text-white capitalize">
+                                        {paymentMethod}
+                                    </span>
+                                </div>
+
+                                <div className="flex justify-between border-t pt-4">
+                                    <span className="text-white font-bold">
+                                        Total Amount
+                                    </span>
+
+                                    <span className="text-orange-400 text-xl font-bold">
+                                        ₹{total}
+                                    </span>
+                                </div>
                             </div>
-                        </div>
 
-                        <button
-                            type="submit"
-                            className="w-full bg-gradient-to-r from-orange-500 to-red-600 py-3 text-white font-bold rounded"
-                        >
-                            Make Payment
-                        </button>
+                            <button
+                                type="submit"
+                                className="w-full bg-gradient-to-r from-orange-500 to-red-600 py-3 text-white font-bold rounded"
+                            >
+                                Make Payment
+                            </button>
 
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }

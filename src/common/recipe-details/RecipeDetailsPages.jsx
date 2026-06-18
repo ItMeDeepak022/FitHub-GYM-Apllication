@@ -7,8 +7,7 @@ export default function RecipeDetails() {
     let { state } = useLocation()
 
     let [detailspage, setdetailspage] = useState([])
-
-    console.log(state);
+    
     const {
         calories,
         carbs,
@@ -47,11 +46,11 @@ export default function RecipeDetails() {
                     <p className="text-[20px] text-white font-bold">Recipe Details Pages</p>
                 </div>
             </div>
-            <div className="max-w-[1320px] mx-auto py-12 relative ">
-                <div className="grid lg:grid-cols-2 gap-10 bg-white  shadow-xl ">
+            <div className="max-w-full py-0 relative ">
+                <div className="grid lg:grid-cols-2 sm:gap-10 bg-white  ">
 
                     {/* Left Side */}
-                    <div>
+                    <div className="sm:border-1 border-gray-200 sm:m-1">
                         <img
                             src={nutritionImg}
                             alt={nutritionName}
@@ -59,7 +58,7 @@ export default function RecipeDetails() {
                         />
 
                         <div className="mt-8 bg-gray-50 px-5 py-3 sm:m-5 m-2">
-                            <h2 className="text-2xl font-bold mb-4">
+                            <h2 className="text-2xl font-bold ">
                                 About Nutrition
                             </h2>
 
@@ -72,7 +71,7 @@ export default function RecipeDetails() {
                     {/* Right Side */}
                     <div className="flex flex-col justify-center p-5">
 
-                        <span className="w-fit bg-[#E268E0] absolute  top-25 right-15 text-white px-6  py-2 rounded-full">
+                        <span className="w-fit bg-[#E268E0] absolute  sm:top-13 sm:right-15 top-5   text-white px-6  py-2 rounded-full">
                             {category}
                         </span>
 
@@ -126,7 +125,7 @@ export default function RecipeDetails() {
                         </div>
 
                         {/* Benefits */}
-                        <div className="mt-10 border rounded-[20px] p-6">
+                        <div className="mt-10 border-1 border-gray-200 rounded-[10px] p-6">
                             <h3 className="text-2xl font-semibold mb-4">
                                 Benefits
                             </h3>

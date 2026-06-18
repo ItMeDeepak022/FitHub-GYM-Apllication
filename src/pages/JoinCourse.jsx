@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router'
+import { Link, useLocation, useNavigate } from 'react-router'
 import { toast, ToastContainer } from 'react-toastify'
 
 export default function JoinCourse() {
@@ -43,44 +43,41 @@ export default function JoinCourse() {
 
     }
 
+    let { state } = useLocation()
+    let { programName, programImg } = state
+    
+
+
     return (
         <main className="w-full bg-gray-100 mt-15">
             <ToastContainer />
             <div className='max-w-full mx-auto'>
-                <section className="w-full mb-7 sm:text-center text-start p-5">
+                <section className="w-full sm:mb-7 sm:text-center text-start p-5">
                     <h1 className="sm:text-6xl text-4xl font-bold mb-3 text-slate-800">Join the Gym Courses</h1>
                     <p className="leading-7 text-slate-600 tsm:ext-[20px] text-[18px]">
                         Become part of our training community. Choose your program, tell us a bit about yourself, and get ready to reach your fitness goals.
                     </p>
                 </section>
 
-                <section className="w-full grid gap-0 lg:grid-cols-[60%_auto] pb-0">
-                    <div className="w-full h-full flex flex-col ">
-                        <div className='w-full h-full relative'>
-                            <img className='w-full h-[300px] object-cover' src="/Img/ideal.webp" alt="Ideal body" />
+                <section className="max-w-full grid gap-0 lg:grid-cols-[60%_auto] grid-cols-1 pb-0">
+                    {
+                        state ?
+                            <div className="w-full sm:h-[635px] h-full relative">
+                                <img className='w-full sm:h-full h-[350px]  sm:object-center sm:object-top'
+                                 src={programImg} alt={programName} />
 
-                            <div className='absolute bottom-2 left-1'>
-                                <h1 className='sm:text-[50px] text-[40px] text-[white] font-bold'>Ideal Body</h1>
+                                <div className='absolute bottom-2 left-3'>
+                                    <h1 className='sm:text-[50px] text-[40px] text-[cyan] font-bold'> {programName}</h1>
+                                </div>
+
                             </div>
-                        </div>
-                        <div className='w-full h-full relative'>
-                            <img className='w-full h-[300px] object-cover' src="/Img/weightloss.webp" alt="weight loss" />
-                            <div className='absolute bottom-2 left-1'>
-                                <h1 className='sm:text-[50px] text-[40px] text-[white] font-bold'>Weight Loss</h1>
-                            </div>
-                        </div>
-                        <div className='w-full h-full relative'><img className='w-full h-[300px] object-cover' src="/Img/gain.webp" alt="muscel gain" />
-                            <div className='absolute bottom-2 left-1'>
-                                <h1 className='sm:text-[50px] text-[40px] text-[white] font-bold'>Muscel Gain</h1>
-                            </div>
-                        </div>
+                            :
+                            <div className='text-red-500 text-3xl sm:text-start text-center'>No Data founds...</div>
+                    }
 
-
-                    </div>
-
-                    <div className="p-10 bg-slate-50 ">
+                    <div className="sm:p-10 p-5 bg-slate-50 ">
                         <h2 className="mb-4 ml-5 text-2xl text-slate-900">Candidate Details</h2>
-                        <form onSubmit={handleSubmit} className="grid gap-8 m-5">
+                        <form onSubmit={handleSubmit} className="grid sm:gap-8 gap-4 m-5">
                             <label className="grid gap-2 text-slate-700">
                                 Full Name
                                 <input
