@@ -240,7 +240,7 @@ export default function Nutrition() {
             `${apiUrl}/fetch-nutrition`
         ).then((res) => res.data)
             .then((finalRes) => {
-                console.log(finalRes);
+                // console.log(finalRes);
                 setnutrition(finalRes.data)
             })
     }

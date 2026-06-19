@@ -9,11 +9,11 @@ export default function RecipesPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 ">
 
         {/* LEFT IMAGE */}
-        <div className="w-full h-[700px] overflow-hidden ">
+        <div className="w-full sm:h-[700px] h-[450px] overflow-hidden ">
           <img
             src="https://i.pinimg.com/736x/e0/45/53/e04553af9e6b508da1559e75d9819375.jpg"
             alt="food"
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover  object-center"
           />
         </div>
 

@@ -30,7 +30,7 @@ export default function AboutGYM() {
       `${apiUrl}/fetch-testimonial`
     ).then((res) => res.data)
       .then((finalRes) => {
-        console.log(finalRes);
+        // console.log(finalRes);
         setdata(finalRes.data)
       })
   }

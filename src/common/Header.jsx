@@ -119,10 +119,10 @@ export default function Header() {
 
                 {/* Top Bar */}
                 <div className="w-full h-16 bg-white/10 backdrop-blur-lg">
-                    <Link to={'/'}>
+                    <Link to={'/'} onClick={showNav}>
                         <img
                             src="Img/logo.png"
-                            alt=""
+                            alt="logo"
                             className="w-[50%] h-full object-cover"
                         />
                     </Link>
@@ -130,24 +130,37 @@ export default function Header() {
 
                 {/* Menu */}
                 <ul className="flex flex-col gap-2 mt-10 ">
-                    <li onClick={showNav} className="mr-1 bg-[#3D3361] text-white border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
-                        <Link to={'/'}>Home</Link>
-                    </li>
-                    <li onClick={showNav} className="mr-1 bg-[#3D3361] text-white border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
-                        <Link to={'/about'}>About GYM</Link>
-                    </li>
-                    <li onClick={showNav} className="mr-1 bg-[#3D3361] text-white border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
-                        <Link to={'/program-pages'}>Programs</Link>
-                    </li>
-                    <li onClick={showNav} className="mr-1 bg-[#3D3361] text-white border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
-                        <Link to={'/nutrition'}> Nutrition</Link>
-                    </li>
-                    <li onClick={showNav} className="mr-1 bg-[#3D3361] text-white border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
-                        <Link to={'/contact-now'}>Contact</Link>
-                    </li>
-                    <li onClick={logOut} className="mr-1 bg-[#3D3361] text-[red] font-bold border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
-                        <Link to={'/login-page'}> {token ? 'Logout' : "Login"} </Link>
-                    </li>
+                    <Link to={'/'}>
+                        <li onClick={showNav} className="mr-1 bg-[#3D3361] text-white border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
+                            Home
+                        </li>
+                    </Link>
+                    <Link to={'/about'}>
+                        <li onClick={showNav} className="mr-1 bg-[#3D3361] text-white border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
+                            About GYM
+                        </li>
+                    </Link>
+                    <Link to={'/program-pages'}>
+                        <li onClick={showNav} className="mr-1 bg-[#3D3361] text-white border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
+                            Programs
+                        </li>
+                    </Link>
+                    <Link to={'/nutrition'}>
+                        <li onClick={showNav} className="mr-1 bg-[#3D3361] text-white border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
+                            Nutrition
+                        </li>
+                    </Link>
+                    <Link to={'/contact-now'}>
+                        <li onClick={showNav} className="mr-1 bg-[#3D3361] text-white border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
+                            Contact
+                        </li>
+                    </Link>
+
+                    <Link to={'/login-page'}>
+                        <li onClick={logOut} className="mr-1 bg-[#3D3361] text-[red] font-bold border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
+                            {token ? 'Logout' : "Login"}
+                        </li>
+                    </Link>
                 </ul>
 
                 {/* Close Button */}
@@ -156,6 +169,6 @@ export default function Header() {
                 </div>
             </div>
 
-        </nav>
+        </nav >
     )
 }

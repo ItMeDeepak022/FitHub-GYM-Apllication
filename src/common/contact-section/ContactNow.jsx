@@ -44,7 +44,7 @@ export default function ContactNow() {
         axios.get(
             `${apiWebUrl}/fetch-faq`).then((res) => res.data)
             .then((finalRes) => {
-                console.log(finalRes);
+                // console.log(finalRes);
                 setfaq(finalRes.data)
             })
     }

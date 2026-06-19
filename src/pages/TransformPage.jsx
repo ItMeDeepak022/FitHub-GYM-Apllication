@@ -6,10 +6,10 @@ import { Link } from "react-router";
 export default function TransformPage() {
     return (
         <div
-            className="w-full sm:h-screen h-[110vh] bg-fixed bg-center  bg-cover relative z-2 sm:pt-0 pt-5"
+            className="w-full min-h-screen bg-fixed bg-center  bg-cover relative z-2 sm:pt-0 pt-5"
             style={{ backgroundImage: "url('/Img/cta.png')" }}
         >
-             
+
 
             {/* Content */}
             <div className="absolute sm:top-10 z-10 flex flex-col sm:ml-5  text-center px-3">
@@ -28,31 +28,36 @@ export default function TransformPage() {
                 <div className="flex sm:flex-row flex-col  gap-6 mt-12 max-w-4xl w-full">
 
                     {/* Programs */}
-                    <div className="bg-white/10 backdrop-blur-md p-3 rounded-xl border border-white/20 hover:bg-white/20 transition">
-                        <div className="flex justify-center gap-5">
-                               <CgGym className="text-white text-[24px]"/>
-                            <h2 className="text-xl font-bold text-white mb-2">
-                            Programs
-                        </h2>
-                        
+                    <Link to={'/program-pages'}>
+                        <div className="bg-white/10 backdrop-blur-md p-3 rounded-xl border border-white/20 hover:bg-white/20 transition">
+                            <div className="flex justify-center gap-5">
+                                <CgGym className="text-white text-[24px]" />
+                                <h2 className="text-xl font-bold text-white mb-2">
+                                    Programs
+                                </h2>
+
+                            </div>
+                            <p className="text-gray-200">
+                                Regular training sessions help to lose weight effectively.
+                            </p>
                         </div>
-                        <p className="text-gray-200">
-                            Regular training sessions help to lose weight effectively.
-                        </p>
-                    </div>
+                    </Link>
 
                     {/* Nutrition */}
-                    <div className="bg-white/10 backdrop-blur-md p-3 rounded-xl border border-white/20 hover:bg-white/20 transition">
-                       <div className="flex justify-center gap-5">
-                        <FaAppleAlt className="text-white text-[24px]"/>
-                         <h2 className="text-xl font-bold text-white mb-2">
-                            Nutrition
-                        </h2>
-                       </div>
-                        <p className="text-gray-200">
-                            Proper nutrition plan keeps you healthy and active.
-                        </p>
-                    </div>
+
+                    <Link to={'/nutrition'}>
+                        <div className="bg-white/10 backdrop-blur-md p-3 rounded-xl border border-white/20 hover:bg-white/20 transition">
+                            <div className="flex justify-center gap-5">
+                                <FaAppleAlt className="text-white text-[24px]" />
+                                <h2 className="text-xl font-bold text-white mb-2">
+                                    Nutrition
+                                </h2>
+                            </div>
+                            <p className="text-gray-200">
+                                Proper nutrition plan keeps you healthy and active.
+                            </p>
+                        </div>
+                    </Link>
 
                 </div>
 
