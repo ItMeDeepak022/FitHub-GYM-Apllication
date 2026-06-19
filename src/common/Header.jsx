@@ -150,23 +150,6 @@ export default function Header() {
                     </li>
                 </ul>
 
-                {/* Social Icons */}
-                <div className='text-[25px] text-[cyan] text-center absolute left-15 top-155'>Let's connect now....</div>
-                <div className="flex gap-8 justify-center mt-[110px]">
-                    <div className="w-14 h-14 flex items-center justify-center rounded-full bg-black hover:bg-white  transition">
-                        <FaInstagram className="text-red-500 text-[30px]" />
-                    </div>
-                    <div className="w-14 h-14 flex items-center justify-center rounded-full bg-black hover:bg-white  transition">
-                        <FaFacebookF className="text-blue-500 text-[30px]" />
-                    </div>
-                    <div className="w-14 h-14 flex items-center justify-center rounded-full bg-black hover:bg-white  transition">
-                        <FaTwitter className="text-white hover:text-black text-[30px]" />
-                    </div>
-                    <div className="w-14 h-14 flex items-center justify-center rounded-full bg-black hover:bg-white  transition">
-                        <FaYoutube className="text-red-500 text-[30px]" />
-                    </div>
-                </div>
-
                 {/* Close Button */}
                 <div className="absolute top-4  right-5 " onClick={showNav}>
                     <MdCancel className=" text-3xl text-white cursor-pointer" />

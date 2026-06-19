@@ -100,13 +100,13 @@ function Cards({ data }) {
                 alt="Ideal Body"
                 className="w-full h-60 object-cover"
             />
-            <div className="p-6 text-left">
+            <div className="p-6 text-left h-[330px]">
                 <h2 className="text-xl font-semibold mb-2">{programName} </h2>
 
                 <div className="flex justify-between flex-wrap gap-2">
                     <div className="text-[16px] text-black flex items-center gap-2">
                         <FaClock className="text-[#E268E0]" />
-                        <p>{duration} </p>
+                        <p>{duration} Months </p>
                     </div>
 
                     <div className="text-[16px] text-black flex items-center gap-2">
@@ -120,7 +120,7 @@ function Cards({ data }) {
                     </div>
                 </div>
 
-                <p className="text-gray-600 text-sm mt-3">
+                <p className="text-gray-600 text-sm mt-3 h-[155px] text-justify">
                     {description}
                 </p>
 
