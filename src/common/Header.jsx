@@ -17,6 +17,7 @@ export default function Header() {
     let logOut = () => {
         localStorage.removeItem('token');
         localStorage.removeItem("userName");
+        showNav()
         navigate('/login-page')
     }
 
@@ -130,6 +131,9 @@ export default function Header() {
                 {/* Menu */}
                 <ul className="flex flex-col gap-2 mt-10 ">
                     <li onClick={showNav} className="mr-1 bg-[#3D3361] text-white border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
+                        <Link to={'/'}>Home</Link>
+                    </li>
+                    <li onClick={showNav} className="mr-1 bg-[#3D3361] text-white border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
                         <Link to={'/about'}>About GYM</Link>
                     </li>
                     <li onClick={showNav} className="mr-1 bg-[#3D3361] text-white border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
@@ -141,8 +145,8 @@ export default function Header() {
                     <li onClick={showNav} className="mr-1 bg-[#3D3361] text-white border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
                         <Link to={'/contact-now'}>Contact</Link>
                     </li>
-                    <li onClick={showNav} className="mr-1 bg-[#3D3361] text-[red] font-bold border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
-                        <Link to={'/login-page'}> { token ? 'Logout' :"Login"} </Link>
+                    <li onClick={logOut} className="mr-1 bg-[#3D3361] text-[red] font-bold border-b border-transparent hover:border-white px-3 py-4 transition-all duration-300">
+                        <Link to={'/login-page'}> {token ? 'Logout' : "Login"} </Link>
                     </li>
                 </ul>
 

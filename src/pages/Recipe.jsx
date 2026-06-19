@@ -6,19 +6,19 @@ export default function RecipesPage() {
     <div className="w-full min-h-screen bg-white sm:px-0 px-2 sm:mb-0 mb-8">
 
       {/* MAIN GRID */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 ">
 
         {/* LEFT IMAGE */}
-        <div className="w-full h-full overflow-hidden ">
+        <div className="w-full h-[700px] overflow-hidden ">
           <img
-            src="/Img/recipe.png"
+            src="https://i.pinimg.com/736x/e0/45/53/e04553af9e6b508da1559e75d9819375.jpg"
             alt="food"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
           />
         </div>
 
         {/* RIGHT TEXT */}
-        <div className="w-full flex flex-col gap-8 px-2 sm:px-0">
+        <div className="w-full flex flex-col mt-5 gap-8 px-2 sm:px-0">
 
           {/* Heading */}
           <div>
@@ -54,21 +54,44 @@ export default function RecipesPage() {
                 Illustration
               </p>
               <h2 className="text-lg font-semibold">
-                VEGAN FALAFEL FRITTERS
+                Mix Dry Fruits
               </h2>
               <p className="text-gray-500 text-sm">
-                Time: 50 min | 417 calories
+                Time: 20 min | 417 calories
               </p>
             </div>
 
           </div>
 
-          
+          <div className="flex items-center gap-4 border-t pt-4">
+
+            <div className="w-16 h-16 rounded-full overflow-hidden">
+              <img
+                src="https://i.pinimg.com/736x/17/9a/e4/179ae4d0a3a829e05d63cdab00a9b629.jpg"
+                alt="falafel"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <div>
+              <p className="text-xs text-gray-400 uppercase">
+                Illustration
+              </p>
+              <h2 className="text-lg font-semibold">
+                Mix Fruits
+              </h2>
+              <p className="text-gray-500 text-sm">
+                Time: 10 min | 217 calories
+              </p>
+            </div>
+
+          </div>
+
 
           {/* BUTTON */}
           <div className="mt-4">
             <button className="px-6 py-3 bg-[#E268E0] text-white rounded-lg font-semibold hover:bg-[#62D0DF] transition-all duration-300">
-             <Link to={'/nutrition'}> More Recipes →</Link>
+              <Link to={'/nutrition'}> More Recipes →</Link>
             </button>
           </div>
 

@@ -43,12 +43,12 @@ export default function Program() {
 
                 <b className='text-center uppercase text-[#E268E0] block pb-5'> <span className='text-[cyan]'>/ </span> Programs <span className='text-[cyan]'> /</span></b>
                 {/* Heading */}
-                <h1 className="sm:text-[60px] text-[50px] font-bold uppercase mb-4">
+                <h1 className="sm:text-[60px] text-[30px] font-bold uppercase mb-4">
                     Choose a Program
                 </h1>
 
                 {/* Description */}
-                <p className="text-gray-600 sm:text-center text-justify mb-12 text-2xl">
+                <p className="text-gray-600 sm:text-center text-justify mb-12 sm:text-2xl text-[18px]">
                     Select a program that suits your fitness goals. Whether you want to build muscle,
                     lose weight, or improve overall health — we’ve got you covered.
                 </p>

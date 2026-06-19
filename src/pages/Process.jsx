@@ -72,7 +72,7 @@ export default function Process() {
 
                 {/* Button */}
                 <button className="mt-12 bg-[#E268E0] hover:bg-[#62D0DF] text-white px-8 py-3 rounded-lg font-semibold uppercase tracking-wide transition-all duration-300 hover:scale-105">
-                    <Link to={'/join-us'}>Get Started Now</Link>
+                    <Link to={'/program-pages'}>Get Started Now</Link>
                 </button>
 
             </div>

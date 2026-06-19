@@ -19,10 +19,10 @@ export default function BlogSection() {
         getblogs()
     }, [])
     return (
-        <div className="w-full bg-white py-15 px-4 sm:px-10 md:px-20">
+        <div className="w-full bg-white ">
 
             {/* Heading */}
-            <div className="mb-10">
+            <div className="sm:mb-10 mb-5 sm:m-5 m-3">
                 <h2 className="text-[purple] font-extrabold tracking-widest text-md text-center mb-5">/ BLOG /</h2>
                 <h1 className="text-3xl uppercase text-center sm:text-[50px] font-bold mt-2">
                     Useful Post
@@ -46,19 +46,19 @@ export default function BlogSection() {
                     return (
                         <div
                             key={index}
-                            className="grid lg:grid-cols-2 bg-white  overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500"
+                            className="grid lg:grid-cols-2 grid-cols-1  bg-white  overflow-hidden shadow-sm sm:m-5 m-3"
                         >
                             {/* Image */}
-                            <div className="overflow-hidden">
+                            <div className="overflow-hidden max-h-[500px]">
                                 <img
                                     src={blogImg}
                                     alt={blogTitle}
-                                    className="w-full h-[350px] lg:h-[450px] object-cover hover:scale-110 transition duration-700"
+                                    className="w-full lg:h-full object-cover hover:scale-110 transition duration-700"
                                 />
                             </div>
 
                             {/* Content */}
-                            <div className="p-8 lg:p-12 border-1 border-gray-200 sm:m-15 flex flex-col justify-center">
+                            <div className="p-8 lg:p-5 border-1 border-gray-200 sm:m-0 flex flex-col justify-center">
                                 <span className="inline-block w-fit px-4 py-2 bg-[#E268E0]/10 text-[#E268E0] rounded-full text-sm font-semibold mb-4">
                                     Fitness Blog
                                 </span>

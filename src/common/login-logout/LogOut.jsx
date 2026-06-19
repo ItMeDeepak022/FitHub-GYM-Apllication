@@ -78,9 +78,9 @@ export default function LogOut() {
     return (
         <>
             <ToastContainer />
-            <div className="min-h-screen  flex items-center justify-center sm:px-4 py-10 mt-6">
-                <div className="max-w-6xl w-full sm:rounded-3xl shadow-xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
-                    <div className="w-full relative sm:h-full h-70 text-white p-10 flex items-center justify-center">
+            <div className="max-w-full min-h-screen  flex   justify-center bg-white mt-5">
+                <div className="w-full  grid grid-cols-1 sm:grid-cols-2">
+                    <div className="w-full  relative sm:h-full h-70 text-white p-10 flex items-center justify-center">
                         <img
                             src="https://media.istockphoto.com/id/2024478090/photo/cyber-security-and-security-password-login-online-concept-hands-typing-and-entering-username.jpg?s=612x612&w=0&k=20&c=elPdTy1bW-oUcqapbjVZi7LvUEB25TG-Cbuy7JlF0Ew="
                             alt="Fitness gym"
@@ -96,12 +96,12 @@ export default function LogOut() {
 
                     </div>
 
-                    <div className="sm:p-3 p-5 md:p-[0px_40px] sm:h-[620px] flex items-center justify-center">
+                    <div className="sm:p-0 p-5 sm:p-[0px_40px] bg-white  flex items-center justify-center">
 
                         {
                             show ?
                                 // Login pages Desgin 
-                                <div className="w-full leading-8 ">
+                                <div className="w-full  leading-8 p-3">
                                     <div className="mb-8">
                                         <h2 className="text-3xl mb-10 font-semibold text-gray-900">Login</h2>
                                         <p className="mt-2 text-sm text-gray-500">
@@ -150,9 +150,9 @@ export default function LogOut() {
 
                                 :
                                 // Create Account Design 
-                                <div className="w-full h-[640px] sm:p-0 ">
+                                <div className="w-full h-[630px] ">
 
-                                    <div className="mb-1">
+                                    <div className="mb-5 sm:mt-5">
                                         <h2 className="text-3xl font-semibold text-gray-900">
                                             Create New Account
                                         </h2>
