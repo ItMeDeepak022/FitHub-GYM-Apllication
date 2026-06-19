@@ -100,7 +100,7 @@ function Cards({ data }) {
                 alt="Ideal Body"
                 className="w-full h-60 object-cover"
             />
-            <div className="p-6 text-left h-[330px]">
+            <div className="p-6 text-left sm:h-[340px] h-full">
                 <h2 className="text-xl font-semibold mb-2">{programName} </h2>
 
                 <div className="flex justify-between flex-wrap gap-2">
@@ -120,7 +120,7 @@ function Cards({ data }) {
                     </div>
                 </div>
 
-                <p className="text-gray-600 text-sm mt-3 h-[155px] text-justify">
+                <p className="text-gray-600 text-sm mt-3 sm:h-[160px]  text-justify">
                     {description}
                 </p>
 
