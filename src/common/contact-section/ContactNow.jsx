@@ -4,19 +4,22 @@ import { Link } from 'react-router'
 import { FaUser, FaEnvelope, FaDumbbell, FaPaperPlane } from "react-icons/fa";
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
+import Loader from '../Loader';
 
 export default function ContactNow() {
     const apiUrl = import.meta.env.VITE_AdminUrl;
     const [active, setActive] = useState(null);
 
-   
+
 
     const toggle = (index) => {
         setActive(active === index ? null : index);
     };
+    let [loader, setloader] = useState(false)
 
     let submitData = (e) => {
         e.preventDefault()
+        setloader(true)
         let obj = {
             name: e.target.name.value,
             email: e.target.email.value,
@@ -30,6 +33,7 @@ export default function ContactNow() {
         ).then((res) => res.data)
             .then((finalRes) => {
                 if (finalRes.status) {
+                    setloader(false)
                     e.target.reset();
                     toast.success(finalRes.message);
                 }
@@ -41,10 +45,12 @@ export default function ContactNow() {
 
     let [faqs, setfaq] = useState([])
     let getfaqdata = () => {
+
         axios.get(
             `${apiWebUrl}/fetch-faq`).then((res) => res.data)
             .then((finalRes) => {
                 // console.log(finalRes);
+
                 setfaq(finalRes.data)
             })
     }
@@ -147,10 +153,17 @@ export default function ContactNow() {
                             {/* BUTTON */}
                             <button
                                 type="submit"
-                                className="w-full flex items-center justify-center gap-2 py-3 bg-[#332467] hover:bg-[#62D0DF] text-white rounded-lg font-semibold   transition-all duration-300 shadow-md"
+                                className="w-full flex items-center justify-center gap-5 py-3 hover:bg-[#332467] bg-[#62D0DF] text-white rounded-lg font-semibold   transition-all duration-300 shadow-md"
                             >
-                                <FaPaperPlane />
-                                Send Message
+                                <div className='flex items-center gap-2'>
+                                    <FaPaperPlane />
+                                    Send Message
+                                </div>
+                                {
+                                    loader ?
+                                        <Loader />
+                                        : ''
+                                }
                             </button>
 
                         </form>

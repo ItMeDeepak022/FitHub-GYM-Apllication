@@ -4,6 +4,7 @@ import { FiEdit } from 'react-icons/fi'
 import { TbLockPassword } from "react-icons/tb";
 import { useNavigate } from 'react-router';
 import { toast, ToastContainer } from 'react-toastify';
+import Loader from '../../Loader';
 export default function Trainee() {
 
   const apiUrl = import.meta.env.VITE_UserUrl;
@@ -58,6 +59,7 @@ export default function Trainee() {
   let token = localStorage.getItem('token')
   let [oldImg, setoldImg] = useState('')
 
+  let [showImg, setshowImg] = useState('')
   let getuserProfile = () => {
     axios.get(
       `${apiUrl}/get-userprofile`,
@@ -69,6 +71,7 @@ export default function Trainee() {
     ).then((res) => res.data)
       .then((finalRes) => {
         setprofile(finalRes.data)
+        setshowImg(finalRes.profileImg)
       })
 
   }
@@ -78,11 +81,13 @@ export default function Trainee() {
     }, [token])
 
   )
+  let [loader, setloader] = useState(false)
 
 
   let editProfile = (e) => {
 
     e.preventDefault()
+    setloader(true)
     const formData = new FormData();
 
     formData.append("name", name);
@@ -107,6 +112,7 @@ export default function Trainee() {
     ).then((res) => res.data)
       .then((finalRes) => {
         if (finalRes.status) {
+          setloader(false)
           getuserProfile()
           toast.warn(finalRes.message)
           e.target.reset()
@@ -114,7 +120,10 @@ export default function Trainee() {
             navigate('/user/home')
           }, 1500);
         }
-
+        else {
+          toast.error(finalRes.message)
+          setloader(false)
+        }
 
       })
   }
@@ -142,15 +151,20 @@ export default function Trainee() {
           <div className="h-56 bg-black relative">
 
             {/* Profile Image */}
-            <div className="absolute top-12 sm:left-20 left-4">
+            {
+              oldImg ?
+                <div className="absolute top-12 sm:left-20 left-8">
 
-              <img
-                src={profile.profileImg}
-                alt='profileImg'
-                className="w-60 h-60 rounded-full border-[6px] border-[purple] shadow-xl object-cover"
-              />
+                  <img
+                    src={profile.profileImg}
+                    alt='profileImg'
+                    className="w-60 h-60 rounded-full border-[6px] border-[purple] shadow-xl object-cover"
+                  />
 
-            </div>
+                </div>
+                :
+                <div className='absolute top-12 sm:left-20 left-4 text-white text-2xl'>No Img Available....</div>
+            }
 
           </div>
           <div className="relative pt-20 pb-8 sm:px-10  px-3 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
@@ -233,7 +247,7 @@ export default function Trainee() {
                   name='profileImg'
                   className="mt-5 border border-slate-300 rounded-xl sm:w-[20%] w-[100%] py-2 px-3 "
                 />
-                <p className='text-[18px] text-[green] font-bold'>Old Img:{oldImg}</p>
+                <p className='text-[18px] text-[green] font-bold'>Old Img:{oldImg ? oldImg : 'No Img..'} </p>
 
               </div>
 
@@ -335,9 +349,13 @@ export default function Trainee() {
 
                 <button
                   type="submit"
-                  className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-3 rounded-2xl font-semibold transition-all"
+                  className="bg-slate-900 flex items-center justify-center gap-5 hover:bg-slate-800 text-white px-8 py-3 rounded-2xl font-semibold transition-all"
                 >
                   Update Profile
+                  {
+                    loader ? <Loader />
+                      : ''
+                  }
                 </button>
 
                 <button

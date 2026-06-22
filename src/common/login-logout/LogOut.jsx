@@ -2,9 +2,11 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { toast, ToastContainer } from 'react-toastify'
+import Loader from '../Loader'
 
 export default function LogOut() {
     let [show, setshow] = useState(true)
+    let [loader, setloader] = useState(false)
 
     let letshowForm = () => {
         setshow(!show)
@@ -17,7 +19,7 @@ export default function LogOut() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
+        setloader(true)
         if (show) {
             let obj = {
                 email: e.target.email.value,
@@ -29,7 +31,7 @@ export default function LogOut() {
                     // console.log(finalRes);
                     if (finalRes.status) {
                         toast.success(finalRes.message)
-
+                        setloader(false)
                         e.target.reset()
                         localStorage.setItem("token", finalRes.token);
                         localStorage.setItem("userName", finalRes.userName);
@@ -45,6 +47,7 @@ export default function LogOut() {
         }
 
         else {
+
             let obj = {
                 name: e.target.name.value,
                 email: e.target.email.value,
@@ -56,6 +59,7 @@ export default function LogOut() {
                 .then((res) => res.data)
                 .then((finalRes) => {
                     if (finalRes.status) {
+                        setloader(false)
                         toast.success(finalRes.message)
                         e.target.reset()
                         letshowForm()
@@ -63,7 +67,7 @@ export default function LogOut() {
                     }
                     else
                         toast.error(finalRes.message)
-                    
+                    setloader(false)
 
                 })
 
@@ -136,9 +140,15 @@ export default function LogOut() {
                                         <button
 
                                             type="submit"
-                                            className="w-full rounded-2xl bg-indigo-600 px-5 py-3 text-white text-base font-semibold transition hover:bg-indigo-700"
+                                            className="flex items-center justify-center gap-5 w-full rounded-2xl bg-indigo-600 px-5 py-3 text-white text-base font-semibold transition hover:bg-indigo-700"
                                         >
                                             Login In
+                                            {
+                                                loader ?
+                                                    <Loader />
+                                                    :
+                                                    ''
+                                            }
                                         </button>
                                     </form>
                                     <div className="mt-6 text-center cursor-pointer  text-sm text-gray-500">
@@ -233,10 +243,17 @@ export default function LogOut() {
 
                                         {/* Button */}
                                         <button
+
                                             type="submit"
-                                            className="w-full rounded-2xl bg-indigo-600 px-5 py-3 text-white font-semibold hover:bg-indigo-700 transition"
+                                            className="flex items-center justify-center gap-5 w-full rounded-2xl bg-indigo-600 px-5 py-3 text-white text-base font-semibold transition hover:bg-indigo-700"
                                         >
-                                            Create Account
+                                             Creare Account
+                                            {
+                                                loader ?
+                                                    <Loader />
+                                                    :
+                                                    ''
+                                            }
                                         </button>
                                     </form>
 
