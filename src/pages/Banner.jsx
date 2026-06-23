@@ -149,7 +149,7 @@ export default function Banner() {
                     </h1>
 
                     <p className="text-white mt-4 text-justify text-lg sm:text-xl md:text-2xl">
-                        With professional coach Evelyn Mason!
+                        With professional fitness dynamic gym!
                     </p>
 
                     <a
