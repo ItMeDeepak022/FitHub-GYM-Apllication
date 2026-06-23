@@ -41,6 +41,7 @@ export default function LogOut() {
                     }
                     else {
                         toast.error(finalRes.message)
+                        setloader(false)
                     }
                 })
 
@@ -247,7 +248,7 @@ export default function LogOut() {
                                             type="submit"
                                             className="flex items-center justify-center gap-5 w-full rounded-2xl bg-indigo-600 px-5 py-3 text-white text-base font-semibold transition hover:bg-indigo-700"
                                         >
-                                             Creare Account
+                                            Create Account
                                             {
                                                 loader ?
                                                     <Loader />
